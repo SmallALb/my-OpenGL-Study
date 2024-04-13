@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\code\OpenGL\g-truc-glm-33b0eb9\test\gtx\gtx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\code\OpenGL\g-truc-glm-33b0eb9\test\gtx\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{18F700FC-6C4B-31D9-A5FE-D02E92BEF45C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

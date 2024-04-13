@@ -1,0 +1,16 @@
+# ninja log v5
+7	471	7335592104904905	CMakeFiles/openglStudy.dir/glad.c.obj	b962bea6102ddc29
+872	1202	7335592111651604	wrapper/wrapper.lib	ba0847717edd62ba
+12	872	7335592109195470	wrapper/CMakeFiles/wrapper.dir/checkError.cpp.obj	12e0e577c3717f8b
+8	794	7341203392608649	application/CMakeFiles/app.dir/Application.cpp.obj	3b31382fcd7c92a5
+26	1341	7335592113651162	glframework/CMakeFiles/fw.dir/shader.cpp.obj	7649bb215e7b1946
+34	1202	7335592112486041	glframework/CMakeFiles/fw.dir/texture.cpp.obj	d2c9009d1ca7a723
+17	75	7341199715759024	application/CMakeFiles/app.dir/camera.cpp.obj	fc1d4173ecb84f31
+30	1296	7335592113110975	glframework/CMakeFiles/fw.dir/shape.cpp.obj	538c12407e0e6aa3
+1396	1447	7341209651922970	application/app.lib	1802896fd387cefc
+1341	1388	7335592114407083	glframework/fw.lib	d46a1da9abc767b0
+2	1178	7341203396403930	CMakeFiles/openglStudy.dir/main.cpp.obj	d13bd1b1aed0bd01
+1447	1660	7341209653363059	openglStudy.exe	913e6cb75791b7e
+3	1395	7341209651393471	application/CMakeFiles/app.dir/camera/camera.cpp.obj	541616b398b8eb24
+16	1176	7341679232924153	application/CMakeFiles/app.dir/camera/perspectivrCamera_.cpp.obj	a17e27482556ed9b
+2	1179	7341679232959195	application/CMakeFiles/app.dir/camera/camera.cpp.obj	541616b398b8eb24

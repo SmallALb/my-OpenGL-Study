@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "Application.h"
-#include "Application.h"
+
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 
@@ -61,6 +61,9 @@ bool Application::init(const int& width, const int& height) {
 	//º¸≈ÃœÏ”¶
 	glfwSetKeyCallback(mWindow, keyCallback);
 
+	glfwSetMouseButtonCallback(mWindow, mouseCallback);
+
+	glfwSetCursorPosCallback(mWindow, cursorCallback);
 	glEnable(GL_DEPTH_TEST);
 	return true;
 }
@@ -87,6 +90,10 @@ void Application::destroy() {
 }
 
 
+void Application::getCursorPosition(double* x, double* y) {
+	glfwGetCursorPos(mWindow, x, y);
+}
+
 void Application::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 	//std::cout << "Resize" << std::endl;
 
@@ -98,11 +105,28 @@ void Application::frameBufferSizeCallback(GLFWwindow* window, int width, int hei
 
 void Application::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	Application* self = (Application*)glfwGetWindowUserPointer(window);
-	if (self->mCamera != nullptr) {
-		switch (action) {
-		case GLFW_KEY_DOWN:
-			//setKeyBoardCallback();
-			break;
-		}
+	if (self->mKeyBoardCallback != nullptr) {
+		self->mKeyBoardCallback(key, action, mods);
+	}
+}
+
+void Application::mouseCallback(GLFWwindow* window, int button, int action, int mods) {
+	Application* self = (Application*)glfwGetWindowUserPointer(window);
+	if (self->mMouseCallback != nullptr) {
+		self->mMouseCallback(button, action, mods);
+	}
+}
+
+void Application::cursorCallback(GLFWwindow* window, double xpos, double ypos) {
+	Application* self = (Application*)glfwGetWindowUserPointer(window);
+	if (self->mCursorCallback != nullptr) {
+		self->mCursorCallback(xpos, ypos);
+	}
+}
+
+void Application::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
+	Application* self = (Application*)glfwGetWindowUserPointer(window);
+	if (self->mScrollCallback != nullptr) {
+		self->mScrollCallback(yoffset);
 	}
 }

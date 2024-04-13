@@ -5,6 +5,9 @@
 #include "glframework/texture.h"
 #include "globa/math.h"
 #include "glframework/shape.h"
+#include "application/camera/perspectivrCamera.h"
+#include "application/camera/cameraControl.h"
+#include "application/camera/gameCameraControl.h"
 GLuint vao;
 GLuint vao2;
 
@@ -20,7 +23,10 @@ Texture* texture2 = nullptr;
 Texture* texturelight = nullptr;
 Texture* texturelight2 = nullptr;
 
-glm::mat4 model, view, pre, model2;
+PerspectivrCamera* camera = nullptr;
+GameCameraControl* cameraControl = nullptr;
+
+glm::mat4 model, view, pre, model2, transforms;
 
 const GLuint lats = 320;
 const GLuint lons = 620;
@@ -35,9 +41,30 @@ void OnResize(int width, int height) {
 }
 
 void OnKey(int key, int action, int mods) {
-	std::cout << key << std::endl;
+	cameraControl->onKey(key, action, mods);
 }
 
+void onMouse(int button, int action, int mods) {
+	double x, y;
+	app->getCursorPosition(&x, &y);
+	cameraControl->onMouse(button, action, x, y);
+}
+
+void OnCursor(double xpos, double ypos) {
+	cameraControl->onCursor(xpos, ypos);
+}
+
+void OnScroll(double offset) {
+	cameraControl->onScroll(offset);
+}
+
+void perpareCamera() {
+	camera = new PerspectivrCamera(60.0, (float)app->getWidth()/ (float)app->getHeight(), 0.01, 1000.0 );
+
+	cameraControl = new GameCameraControl();
+	cameraControl->setCamera(camera);
+	cameraControl->setSensitivity(0.2);
+}
 
 void prepareVAO() {
 	glm::vec3 nor1 = glm::cross( glm::vec3(0.5f, 0.5f, -0.5f)- glm::vec3(-0.5, -0.5, -0.5),glm::vec3(0.5, -0.5, -0.5)  - glm::vec3(-0.5, -0.5, -0.5));
@@ -255,11 +282,11 @@ void Createshape(float* sphere, unsigned int Longitude, unsigned int Latitude, f
 }
 int voe = 0;
 void transform() {
-	angle += 0.0001;
+	angle += 0.1;
 	model = glm::mat4(1.0);
-	//model = glm::rotate(model, angle, glm::vec3(0.0, 1.0, 0.0));
+	model = glm::rotate(model, angle, glm::vec3(0.0, 1.0, 0.0));
 	//model = glm::scale(glm::mat4(1.0f), glm::vec3(0.2, 0.2, 0.2));
-	//model = glm::translate(model, glm::vec3(0.0, 6.0, 0.0));
+	model = glm::translate(model, glm::vec3(0.0, 0.3*sin(angle), 0.0));
 	shader->setMat4("model", model);
 	shader->setInt("material.diffuse", 0);
 	shader->setInt("material.specular", 2);
@@ -267,9 +294,9 @@ void transform() {
 }
 
 void transform2() {
-	model2 = glm::scale(glm::mat4(1.0f), glm::vec3(15.0, 15.0, 15.0));
+	model2 = glm::scale(glm::mat4(1.0f), glm::vec3(5.0, 5.0, 5.0));
 	model2 = glm::translate(model2, glm::vec3(0.0, -0.3, 0.0));
-	//model2 = glm::rotate(model2, glm::radians(60.0f), glm::vec3(1.0, 0.0, 0.0));
+	model2 = glm::rotate(model2, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
 	shader->setMat4("model", model2);
 	shader->setInt("material.diffuse", 1);
 	shader->setInt("material.specular", 3);
@@ -347,8 +374,9 @@ void render2() {
 	GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	shader->begin();
 	lightpos.y += angle;
-	shader->setMat4("view", view);
-	shader->setMat4("projection", pre);
+	shader->setMat4("view", camera->getViewMatrix());
+	shader->setMat4("projection", camera->getProjectMatrix());
+	shader->setMat4("transform", transforms);
 	shader->setVector3("viewPos", glm::value_ptr(view));
 	shader->setVector3("light.position", glm::value_ptr(view));
 	shader->setVector3("light.direction", glm::value_ptr(lightpos));
@@ -364,8 +392,8 @@ void render2() {
 	//shader->setInt("blacksampler", 0);
 	//shader->setInt("glsssampler", 2);
 	transform();
-	glBindVertexArray(s1->getVao());
-	glDrawArrays(GL_TRIANGLES, 0, s1->getSize());
+	glBindVertexArray(vao);
+	glDrawArrays(GL_TRIANGLES, 0, 6 * lats * lons);
 
 	transform2();
 	glBindVertexArray(vao2);
@@ -382,19 +410,22 @@ int main() {
 
 	app->setResizeCallback(OnResize);
 	app->setKeyBoardCallback(OnKey);
+	app->setMouseCallback(onMouse);
+	app->setCursorCallback(OnCursor);
 
 	//设置opengl视口以及清理颜色
 	GL_CALL(glViewport(0, 0, 1000, 1000));
-	GL_CALL(glClearColor(0.2f, 0.2f, 0.2f, 1.0f));
-	s1 = new Shape();
-	s1->CreateBall(lons, lats, 1.8);
+	GL_CALL(glClearColor(0.8f, 0.8f, 0.8f, 1.0f));
+	/*s1 = new Shape();
+	s1->CreateBall(lons, lats, 1.8);*/
 
 	shader = new Shader("assets/shaders/3Dvertex.glsl", "assets/shaders/lightfragment.glsl");
 	texture = new Texture("assets/textures/iron.jpg", 0);
 	texture2 = new Texture("assets/textures/sh.jpg", 1);
 	texturelight = new Texture("assets/textures/ironlight.png", 2);
 	texturelight2 = new Texture("assets/textures/shlight.png", 3);
-
+	transforms = glm::mat4(1.0);
+	perpareCamera();
 
 	pre = glm::perspective(glm::radians(45.0f), (float)app->getWidth() / (float)app->getHeight(), 0.01f, 100.0f);
 	view = glm::translate(glm::mat4(1.0f), glm::vec3(0.3, 1.6, 12.0));
@@ -407,7 +438,7 @@ int main() {
 	GL_CALL(preparebox());
 
 	while (app->update()) {
-
+		cameraControl->update();
 		render2();
 		_sleep(8);
 		//system("cls");
@@ -418,5 +449,7 @@ int main() {
 	delete texture2;
 	delete texturelight;
 	delete texturelight2;
+	delete camera;
+	delete cameraControl;
 	return 0;
 }

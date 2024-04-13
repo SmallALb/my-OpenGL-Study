@@ -1,0 +1,12 @@
+E:/code/OpenGL/openglcode/out/build/x64-Release/CMakeFiles/openglStudy.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/CMakeFiles/edit_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/CMakeFiles/rebuild_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/wrapper/CMakeFiles/wrapper.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/wrapper/CMakeFiles/edit_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/wrapper/CMakeFiles/rebuild_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/application/CMakeFiles/app.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/application/CMakeFiles/edit_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/application/CMakeFiles/rebuild_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/glframework/CMakeFiles/fw.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/glframework/CMakeFiles/edit_cache.dir
+E:/code/OpenGL/openglcode/out/build/x64-Release/glframework/CMakeFiles/rebuild_cache.dir
