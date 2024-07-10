@@ -7,6 +7,7 @@ uniform vec3 moveUV;
 uniform mat4 view;
 uniform mat4 projection;
 uniform mat4 model;
+//uniform mat4 transform;
 
 out vec4 color;
 out vec3 pos;

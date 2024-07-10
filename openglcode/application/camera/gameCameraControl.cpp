@@ -12,8 +12,9 @@ void GameCameraControl::onCursor(double xpos, double ypos) {
 	float dY = (ypos - mCurrentY) * mSensitivity;
 	float dX = (xpos - mCurrentX) * mSensitivity;
 	if (mRightMouseDown) {
-		pitch(-dY);
 		yaw(-dX);
+		pitch(-dY);
+		
 	}
 	mCurrentX = xpos;
 	mCurrentY = ypos;
@@ -21,8 +22,9 @@ void GameCameraControl::onCursor(double xpos, double ypos) {
 
 void GameCameraControl::update() {
 	auto front = glm::cross(mCamera->mUp, mCamera->mRight);
+	front *= 0.2;
 	auto right = mCamera->mRight;
-	auto up = glm::vec3(0.0, 1.0, 0.0);
+	auto up = glm::vec3(0.0, 0.2, 0.0);
 	glm::vec3 direction(0.0);
 
 	if (mKeyMap[GLFW_KEY_W]) {

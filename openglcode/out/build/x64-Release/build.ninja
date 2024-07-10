@@ -202,6 +202,22 @@ build application\CMakeFiles\app.dir\camera\camera.cpp.obj: CXX_COMPILER__app_un
   TARGET_COMPILE_PDB = application\CMakeFiles\app.dir\app.pdb
   TARGET_PDB = application\app.pdb
 
+build application\CMakeFiles\app.dir\camera\cameracontrol.cpp.obj: CXX_COMPILER__app_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\application\camera\cameracontrol.cpp || cmake_object_order_depends_target_app
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = application\CMakeFiles\app.dir
+  OBJECT_FILE_DIR = application\CMakeFiles\app.dir\camera
+  TARGET_COMPILE_PDB = application\CMakeFiles\app.dir\app.pdb
+  TARGET_PDB = application\app.pdb
+
+build application\CMakeFiles\app.dir\camera\gameCameraControl.cpp.obj: CXX_COMPILER__app_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\application\camera\gameCameraControl.cpp || cmake_object_order_depends_target_app
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = application\CMakeFiles\app.dir
+  OBJECT_FILE_DIR = application\CMakeFiles\app.dir\camera
+  TARGET_COMPILE_PDB = application\CMakeFiles\app.dir\app.pdb
+  TARGET_PDB = application\app.pdb
+
 build application\CMakeFiles\app.dir\camera\orthographicCamera.cpp.obj: CXX_COMPILER__app_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\application\camera\orthographicCamera.cpp || cmake_object_order_depends_target_app
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
   INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
@@ -226,7 +242,7 @@ build application\CMakeFiles\app.dir\camera\perspectivrCamera_.cpp.obj: CXX_COMP
 #############################################
 # Link the static library application\app.lib
 
-build application\app.lib: CXX_STATIC_LIBRARY_LINKER__app_RelWithDebInfo application\CMakeFiles\app.dir\Application.cpp.obj application\CMakeFiles\app.dir\camera\camera.cpp.obj application\CMakeFiles\app.dir\camera\orthographicCamera.cpp.obj application\CMakeFiles\app.dir\camera\perspectivrCamera_.cpp.obj
+build application\app.lib: CXX_STATIC_LIBRARY_LINKER__app_RelWithDebInfo application\CMakeFiles\app.dir\Application.cpp.obj application\CMakeFiles\app.dir\camera\camera.cpp.obj application\CMakeFiles\app.dir\camera\cameracontrol.cpp.obj application\CMakeFiles\app.dir\camera\gameCameraControl.cpp.obj application\CMakeFiles\app.dir\camera\orthographicCamera.cpp.obj application\CMakeFiles\app.dir\camera\perspectivrCamera_.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = application\CMakeFiles\app.dir

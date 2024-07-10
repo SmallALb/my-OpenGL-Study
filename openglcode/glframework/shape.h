@@ -9,20 +9,25 @@ public:
 
 	~Shape();
 	
-	void CreateBall(unsigned int Longitude, unsigned int Latitude, float r);
+	static Shape* createBox(float size);
 
-	void CreateCube(float l, float w);
+	static Shape* createSphere(float radius);
+	
+	static Shape* createPlan(float width, float heigt);
 
-	unsigned int getVao() { return mVao; }
+	GLuint& getVao() { return mVao; }
 
-	unsigned int getSize() { return mSize; }
+	uint32_t getIndicesCount() const { return mIndicesCount; }
+
 private:
-	glm::vec3 getPoint(float u, float v, glm::vec2& uv, float r);
-private:
-	unsigned int mSize{ 0 };
+	uint32_t mIndicesCount{ 0 };
 	float* mVertexBuffer{ nullptr };
-	unsigned int mVao{ 0 };
-	unsigned int mTextureID{ 0 };
+	GLuint mVao{ 0 };
+	GLuint mUvVbo{ 0 };
+	GLuint mPosVbo{ 0 };
+	GLuint mNormal{ 0 };
+	GLuint mEbo{ 0 };
+	GLuint mTextureID{ 0 };
 public:
 	glm::mat4 mModel;
 };

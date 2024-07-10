@@ -29,7 +29,7 @@ uniform vec3 viewPos;
 in vec2 uv;
 in vec4 color;
 in vec3 pos;
-in vec3 nor;
+in vec3 normal;
 void main() {
     vec3 ambient = light.ambient * vec3(texture(material.diffuse, uv));
 
@@ -39,7 +39,7 @@ void main() {
     vec3 lightDir = normalize(light.position - pos);
 
     float theta = dot(lightDir, normalize(-light.direction));
-    vec3 norm = normalize(nor);
+    vec3 norm = normalize(normal);
     float diff = max(dot(lightDir, norm), 0.0);
     diffuse = light.diffuse * diff * vec3(texture(material.diffuse, uv));
 
@@ -56,6 +56,7 @@ void main() {
     specular *= attenuation;
     ambient *= attenuation;
     vec3 result = ambient + diffuse + specular;
+
     FragColor = vec4(result, 1.0);
 }
 

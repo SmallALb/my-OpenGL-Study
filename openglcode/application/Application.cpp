@@ -65,6 +65,7 @@ bool Application::init(const int& width, const int& height) {
 
 	glfwSetCursorPosCallback(mWindow, cursorCallback);
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 	return true;
 }
 
