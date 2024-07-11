@@ -73,10 +73,10 @@ build CMakeFiles\openglStudy.dir\glad.c.obj: C_COMPILER__openglStudy_unscanned_D
 #############################################
 # Link the executable openglStudy.exe
 
-build openglStudy.exe: CXX_EXECUTABLE_LINKER__openglStudy_Debug CMakeFiles\openglStudy.dir\main.cpp.obj CMakeFiles\openglStudy.dir\glad.c.obj | wrapper\wrapper.lib application\app.lib glframework\fw.lib || application\app.lib glframework\fw.lib wrapper\wrapper.lib
+build openglStudy.exe: CXX_EXECUTABLE_LINKER__openglStudy_Debug CMakeFiles\openglStudy.dir\main.cpp.obj CMakeFiles\openglStudy.dir\glad.c.obj | wrapper\wrapper.lib application\app.lib glframework\fw.lib wrapper\wrapper.lib application\app.lib glframework\fw.lib || application\app.lib glframework\fw.lib wrapper\wrapper.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   LINK_PATH = -LIBPATH:E:\code\OpenGL\openglcode\SYSTEM   -LIBPATH:E:\code\OpenGL\openglcode\thirdParty\lib
   OBJECT_DIR = CMakeFiles\openglStudy.dir
   POST_BUILD = cd .

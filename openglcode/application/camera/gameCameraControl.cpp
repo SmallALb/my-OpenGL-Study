@@ -22,7 +22,6 @@ void GameCameraControl::onCursor(double xpos, double ypos) {
 
 void GameCameraControl::update() {
 	auto front = glm::cross(mCamera->mUp, mCamera->mRight);
-	front *= 0.2;
 	auto right = mCamera->mRight;
 	auto up = glm::vec3(0.0, 0.2, 0.0);
 	glm::vec3 direction(0.0);

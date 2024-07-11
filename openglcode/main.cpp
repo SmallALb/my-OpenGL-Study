@@ -18,6 +18,7 @@ float angle = 0;
 
 glm::vec3 Direction = glm::vec3(-1.0, -1.0, -1.0);
 glm::vec3 Color = glm::vec3(0.9, 0.85, 0.75);
+glm::vec3 ambientColor = glm::vec3(0.2f, 0.2f, 0.2f);
 
 Shape* shape2 = nullptr;
 
@@ -71,6 +72,7 @@ void perpareCamera() {
 	cameraControl = new GameCameraControl();
 	cameraControl->setCamera(camera);
 	cameraControl->setSensitivity(0.05);
+	cameraControl->setSpeed(0.01);
 }
 
 
@@ -81,10 +83,10 @@ void transform() {
 	angle += 0.01;
 	model = glm::mat4(1.0);
 	model = glm::rotate(model, angle, glm::vec3(0.0, 1.0, 0.0));
-	//model = glm::scale(glm::mat4(1.0f), glm::vec3(0.2, 0.2, 0.2));
-	model = glm::translate(model, glm::vec3(0.0, 0.3*sin(angle), 0.0));
+	////model = glm::scale(glm::mat4(1.0f), glm::vec3(0.2, 0.2, 0.2));
+	//model = glm::translate(model, glm::vec3(0.0, 0.3*sin(angle), 0.0));
 	shader->setMat4("model", model);
-
+	shader->setMat4("normat", glm::transpose(glm::inverse(model)));
 }
 
 void transform2() {
@@ -93,7 +95,7 @@ void transform2() {
 	model2 = glm::rotate(model2, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
 	shader->setMat4("model", model2);
 	shader->setInt("sampler", 1);
-
+	shader->setMat4("normat", glm::transpose(glm::inverse(model2)));
 
 	
 }
@@ -104,7 +106,7 @@ void transfrom3() {
 	model3 = glm::rotate(model3, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
 	shader->setMat4("model", model3);
 	shader->setInt("sampler", 0);
-
+	shader->setMat4("normat", glm::transpose(glm::inverse(model3)));
 
 }
 void preparebox() {
@@ -139,18 +141,26 @@ void render() {
 void render2() {
 	GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	shader->begin();
-	lightpos.y += angle;
 	shader->setMat4("view", camera->getViewMatrix());
 	shader->setMat4("projection", camera->getProjectMatrix());
 	shader->setVector3("Direction", glm::value_ptr(Direction));
 	shader->setVector3("lightcolor", glm::value_ptr(Color));
+	shader->setVector3("cameraPosition", glm::value_ptr(camera->mPosition));
+	shader->setFloat("specularIntensity", 0.8);
+	shader->setVector3("ambientcolor", 0.2,0.2,0.2);
+	//shader->setVector3("lightDirection", glm::value_ptr(Direction));
+	//shader->setVector3("lightColor", glm::value_ptr(Color));
+	//shader->setFloat("specularIntensity", 0.5);
+	//shader->setVector3("ambientColor", glm::value_ptr(ambientColor));
+
+	//shader->setVector3("cameraPosition", glm::value_ptr(camera->mPosition));
 	//shader->setInt("blodsampler", 1);
 	//shader->setInt("blacksampler", 0);
 	//shader->setInt("glsssampler", 2);
 	transform();
 	glBindVertexArray(2);
 	glDrawElements(GL_TRIANGLES, shape2->getIndicesCount(), GL_UNSIGNED_INT, 0);
-
+	shader->setFloat("specularIntensity", 0.5);
 	transform2();
 	glBindVertexArray(shape1->getVao());
 	glDrawElements(GL_TRIANGLES, shape1->getIndicesCount(), GL_UNSIGNED_INT, 0);

@@ -27,3 +27,4 @@ add_subdirectory(glframework)
 add_executable(openglStudy "main.cpp" "glad.c")
  
 target_link_libraries(openglStudy glfw3.lib wrapper app fw)
+target_link_libraries(openglStudy glfw3.lib wrapper app fw)

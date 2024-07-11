@@ -2,6 +2,7 @@
 9	660	7410249755416149	CMakeFiles/openglStudy.dir/glad.c.obj	2ffb4694f1c8cdbd
 1063	1316	7410249762181094	wrapper/wrapper.lib	2172071d1d107aeb
 32	1487	7410249765840910	application/CMakeFiles/app.dir/camera/cameracontrol.cpp.obj	528bb0b2c37b6eac
+1	121	7423800548132929	build.ninja	8292b773df8d0799
 26	1493	7410249765895997	application/CMakeFiles/app.dir/camera/camera.cpp.obj	5a5f0e6557110799
 15	1063	7410249761568080	wrapper/CMakeFiles/wrapper.dir/checkError.cpp.obj	d537eada06dec5fe
 43	1497	7410249765938200	application/CMakeFiles/app.dir/camera/orthographicCamera.cpp.obj	120de6a7e378a07a
@@ -10,8 +11,8 @@
 3	896	7422225904689323	glframework/CMakeFiles/fw.dir/shape.cpp.obj	8ec79a765513e5fd
 48	1520	7410249766169783	application/CMakeFiles/app.dir/camera/perspectivrCamera_.cpp.obj	de39aba2b438ea7
 53	1523	7410249766204844	glframework/CMakeFiles/fw.dir/shader.cpp.obj	5fe06aa260007325
-3	1170	7422076619291660	application/CMakeFiles/app.dir/camera/gameCameraControl.cpp.obj	505b92490fc4ff4a
-3	1075	7422258087550528	CMakeFiles/openglStudy.dir/main.cpp.obj	385e7219bae9da5f
+10	962	7422928281522022	application/CMakeFiles/app.dir/camera/gameCameraControl.cpp.obj	505b92490fc4ff4a
+3	920	7423798902681879	CMakeFiles/openglStudy.dir/main.cpp.obj	385e7219bae9da5f
 896	935	7422225905064734	glframework/fw.lib	d927339bdedf1b68
-1170	1223	7422076619681434	application/app.lib	dd4eb119a151cc7c
-1075	1412	7422258089853984	openglStudy.exe	2b54757915aeb3f1
+963	1018	7422928282056861	application/app.lib	dd4eb119a151cc7c
+920	1091	7423798904071051	openglStudy.exe	728e331b68266d2b
