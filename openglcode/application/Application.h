@@ -36,6 +36,7 @@ public:
 	void setCursorCallback(CursorCallback callback) { mCursorCallback = callback; }
 	void setScrollCallback(ScrollCallback callback) { mScrollCallback = callback; }
 	void getCursorPosition(double* x, double* y);
+	GLFWwindow* getWindow() const { return mWindow; }
 private:
 	//C++类内函数指针
 	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);

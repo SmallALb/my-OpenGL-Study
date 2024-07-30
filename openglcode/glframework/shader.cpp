@@ -1,4 +1,5 @@
 #include "shader.h"
+#include "shader.h"
 
 #include <fstream>
 #include <sstream>
@@ -91,6 +92,11 @@ void Shader::setVector3(const std::string& name, float x, float y, float z) {
 void Shader::setVector3(const std::string& name, const float* values) {
 	unsigned int location = GL_CALL(glGetUniformLocation(mProgram, name.c_str()));
 	GL_CALL(glUniform3fv(location, 1, values));
+}
+
+void Shader::setVector3(const std::string& name, const glm::vec3& vector) {
+	unsigned int location = GL_CALL(glGetUniformLocation(mProgram, name.c_str()));
+	GL_CALL(glUniform3fv(location, 1, glm::value_ptr(vector)));
 }
 
 void Shader::setInt(const std::string& name, int value) {

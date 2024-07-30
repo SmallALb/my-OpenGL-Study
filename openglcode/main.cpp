@@ -8,41 +8,31 @@
 #include "application/camera/perspectivrCamera.h"
 #include "application/camera/cameraControl.h"
 #include "application/camera/gameCameraControl.h"
-GLuint vao;
-GLuint vao2;
+#include "glframework/materials/phongMaterial.h"
+#include "glframework/mesh.h"
+#include "glframework/renderer/render.h"
+#include "glframework/materials/whiteMaterial.h"
+#include "glframework/light/pointLight.h"
+#include "glframework/light/spotLight.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
 
-Shape* shape1 = nullptr;
-
-float speed = 0;
-float angle = 0;
-
-glm::vec3 Direction = glm::vec3(-1.0, -1.0, -1.0);
-glm::vec3 Color = glm::vec3(0.9, 0.85, 0.75);
-glm::vec3 ambientColor = glm::vec3(0.2f, 0.2f, 0.2f);
-
-Shape* shape2 = nullptr;
-
-Shader* shader = nullptr;
-
-Shape* shape3 = nullptr;
-
-Texture* texture = nullptr;
-Texture* texture2 = nullptr;
-Texture* texturelight = nullptr;
-Texture* texturelight2 = nullptr;
-
+Renderer* renderer = nullptr;
 PerspectivrCamera* camera = nullptr;
 GameCameraControl* cameraControl = nullptr;
-
+Mesh* meshwhite = nullptr;
 glm::mat4 model, view, pre, model2, transforms;
 
-const GLuint lats = 320;
-const GLuint lons = 620;
+glm::vec3 clearColor{};
 
-glm::vec3 lightpos;
+std::vector<Mesh*> meshes{};
+SpotLight* spotlight = nullptr;
+AmbientLight* ambilight = nullptr;
+DirectionalLight* dirlight = nullptr;
+std::vector<PointLight*> pointlights;
 
-float positi[6 *  lats * lons * 12];
-
+//
 void OnResize(int width, int height) {
 	GL_CALL(glViewport(0, 0, width, height));
 	std::cout << "OnResize" << std::endl;
@@ -52,12 +42,14 @@ void OnKey(int key, int action, int mods) {
 	cameraControl->onKey(key, action, mods);
 }
 
+//鼠标回调函数
 void onMouse(int button, int action, int mods) {
 	double x, y;
 	app->getCursorPosition(&x, &y);
 	cameraControl->onMouse(button, action, x, y);
 }
 
+//鼠标位置回调
 void OnCursor(double xpos, double ypos) {
 	cameraControl->onCursor(xpos, ypos);
 }
@@ -68,53 +60,40 @@ void OnScroll(double offset) {
 
 void perpareCamera() {
 	camera = new PerspectivrCamera(60.0, (float)app->getWidth()/ (float)app->getHeight(), 0.01, 1000.0 );
-
+	camera->mPosition = {0.0, 0.0, 7.0};
 	cameraControl = new GameCameraControl();
 	cameraControl->setCamera(camera);
 	cameraControl->setSensitivity(0.05);
-	cameraControl->setSpeed(0.01);
+	cameraControl->setSpeed(0.1);
 }
 
 
+void initIMGUI() {
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
 
-
-int voe = 0;
-void transform() {
-	angle += 0.01;
-	model = glm::mat4(1.0);
-	model = glm::rotate(model, angle, glm::vec3(0.0, 1.0, 0.0));
-	////model = glm::scale(glm::mat4(1.0f), glm::vec3(0.2, 0.2, 0.2));
-	//model = glm::translate(model, glm::vec3(0.0, 0.3*sin(angle), 0.0));
-	shader->setMat4("model", model);
-	shader->setMat4("normat", glm::transpose(glm::inverse(model)));
+	ImGui_ImplGlfw_InitForOpenGL(app->getWindow(), 1);
+	ImGui_ImplOpenGL3_Init("#version 460");
 }
 
-void transform2() {
-	model2 = glm::mat4(1.0f);
-	model2 = glm::translate(model2, glm::vec3(0.0, -0.8, 0.0));
-	model2 = glm::rotate(model2, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
-	shader->setMat4("model", model2);
-	shader->setInt("sampler", 1);
-	shader->setMat4("normat", glm::transpose(glm::inverse(model2)));
+void renderIMGUI() {
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
 
-	
-}
+	ImGui::Begin("Hello World!");
+	ImGui::Button("Test Button", ImVec2(40, 20));
+	ImGui::ColorEdit3("Clear Color",(float*) & clearColor);
+	ImGui::End();
 
-void transfrom3() {
-	auto model3 = glm::mat4(1.0f);
-	model3 = glm::translate(model3, glm::vec3(0.0, -0.9, 0.0));
-	model3 = glm::rotate(model3, glm::radians(angle), glm::vec3(0.0, 1.0, 0.0));
-	shader->setMat4("model", model3);
-	shader->setInt("sampler", 0);
-	shader->setMat4("normat", glm::transpose(glm::inverse(model3)));
+	ImGui::Render();
 
-}
-void preparebox() {
+	int d_w, d_h;
+	glfwGetFramebufferSize(app->getWindow(), &d_w, &d_h);
 
-	glGenVertexArrays(1, &shape1->getVao());
-	glBindVertexArray(shape1->getVao());
+	glViewport(0, 0, d_w, d_h);
 
-
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void render() {
@@ -122,57 +101,92 @@ void render() {
 	//执行opengl画布清理操作
 	GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	//1 绑定当前的program
-	shader->begin();
-	shader->setInt("blodsampler", 1);
-	shader->setInt("blacksampler", 0);
-	shader->setInt("glsssampler", 2);
-	transform();
+}
+
+void prepare() {
+	renderer = new Renderer();
+	auto shape = Shape::createSphere(3.0f);
+	auto shape2 = Shape::createBox(1.0f);
+	auto shape3 = Shape::createSphere(0.2);
+
+
+	auto material2 = new PhongMaterial();
+	auto whitematerial = new WhiteMaterial();
+
+	material2->mShiness = 4.0f;
+	material2->mDiffuse = new Texture("assets/textures/sh.png", 0);
+	material2->mSpecularMask = new Texture("assets/textures/blod.png", 1);
+
+	meshwhite = new Mesh(shape3, whitematerial);
+	meshwhite->setPosition({ 1.0, 0.0, 0.0 });
+	auto mesh2 = new Mesh(shape2, material2);
+
+	mesh2->setPosition({ -6.0, 0.0, -5.0 });
+	meshes.push_back(meshwhite);
+	meshes.push_back(mesh2);
+
+
+	spotlight = new SpotLight();
+	spotlight->setPosition(meshwhite->getPosition());
+	spotlight->mTargetDir = {-1.0,0.0,0.0};
+	spotlight->mVisibleAngle = 30.0f;
+	spotlight->mOuterAngle = 45.0f;
+	spotlight->mSpecularIntensity = 1.0;
+
+	PointLight* pointlight1 = nullptr;
+	pointlight1 = new PointLight();
+	pointlight1->setPosition({1.0, 0.0, 0.0});
+	pointlight1->mColor = {1.0, 0.0, 0.0};
+	pointlight1->mSpecularIntensity = 0.5;
+	pointlight1->mk2 = 0.017;
+	pointlight1->mk1 = 0.07;
+	pointlight1->mkc = 1.0;
+	pointlights.push_back(pointlight1);
+
+	PointLight* pointlight2 = nullptr;
+	pointlight2 = new PointLight();
+	pointlight2->setPosition({ 0.0, -1.0, 0.0 });
+	pointlight2->mColor = { 0.0, 1.0, 0.0 };
+	pointlight2->mSpecularIntensity = 0.5;
+	pointlight2->mk2 = 0.017;
+	pointlight2->mk1 = 0.07;
+	pointlight2->mkc = 1.0;
+	pointlights.push_back(pointlight2);
+
+	PointLight* pointlight3 = nullptr;
+	pointlight3 = new PointLight();
+	pointlight3->setPosition({ 0.0, 0.0, 1.5 });
+	pointlight3->mColor = { 0.0, 0.0, 1.0 };
+	pointlight3->mSpecularIntensity = 0.5;
+	pointlight3->mk2 = 0.017;
+	pointlight3->mk1 = 0.07;
+	pointlight3->mkc = 1.0;
+	pointlights.push_back(pointlight3);
+
+	PointLight* pointlight4 = nullptr;
+	pointlight4 = new PointLight();
+	pointlight4->setPosition({ 0.0, 0.0, -1.5 });
+	pointlight4->mSpecularIntensity = 0.5;
+	pointlight4->mk2 = 0.017;
+	pointlight4->mk1 = 0.07;
+	pointlight4->mkc = 1.0;
+	pointlights.push_back(pointlight4);
+
+
+	ambilight = new AmbientLight();
+	ambilight->mColor = glm::vec3(0.6f);
+	ambilight->mSpecularIntensity = 0.5;
+
+	dirlight = new DirectionalLight();
+	dirlight->mDir = {1, 1, 1};
 	
-	//shader->setVector3("moveUV", speed, speed, 0.0f);
-	//shader->setFloat("time", glfwGetTime());
-	GL_CALL(glBindVertexArray(vao));
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
-
-	shader->end();
 }
 
-void render2() {
-	GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-	shader->begin();
-	shader->setMat4("view", camera->getViewMatrix());
-	shader->setMat4("projection", camera->getProjectMatrix());
-	shader->setVector3("Direction", glm::value_ptr(Direction));
-	shader->setVector3("lightcolor", glm::value_ptr(Color));
-	shader->setVector3("cameraPosition", glm::value_ptr(camera->mPosition));
-	shader->setFloat("specularIntensity", 0.8);
-	shader->setVector3("ambientcolor", 0.2,0.2,0.2);
-	//shader->setVector3("lightDirection", glm::value_ptr(Direction));
-	//shader->setVector3("lightColor", glm::value_ptr(Color));
-	//shader->setFloat("specularIntensity", 0.5);
-	//shader->setVector3("ambientColor", glm::value_ptr(ambientColor));
-
-	//shader->setVector3("cameraPosition", glm::value_ptr(camera->mPosition));
-	//shader->setInt("blodsampler", 1);
-	//shader->setInt("blacksampler", 0);
-	//shader->setInt("glsssampler", 2);
-	transform();
-	glBindVertexArray(2);
-	glDrawElements(GL_TRIANGLES, shape2->getIndicesCount(), GL_UNSIGNED_INT, 0);
-	shader->setFloat("specularIntensity", 0.5);
-	transform2();
-	glBindVertexArray(shape1->getVao());
-	glDrawElements(GL_TRIANGLES, shape1->getIndicesCount(), GL_UNSIGNED_INT, 0);
-
-
-	transfrom3();
-	glBindVertexArray(shape3->getVao());
-	glDrawElements(GL_TRIANGLES, shape3->getIndicesCount(), GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
-	shader->end();
+void lightmove() {
+	float xpos = 2.5*glm::sin(glfwGetTime()) + 3.0f;
+	meshwhite->setPosition({xpos, 0.0f, 0.0f});
+	spotlight->setPosition({ xpos, 0.0f, 0.0f });
 }
-
 
 int main() {
 	if (!app->init(1000, 1000)) {
@@ -186,47 +200,25 @@ int main() {
 
 	//设置opengl视口以及清理颜色
 	GL_CALL(glViewport(0, 0, 1000, 1000));
-	GL_CALL(glClearColor(0.8f, 0.8f, 0.8f, 1.0f));
-	/*s1 = new Shape();
-	s1->CreateBall(lons, lats, 1.8);*/
-
-	shader = new Shader("assets/shaders/3Dvertex.glsl", "assets/shaders/lightadd.glsl");
-	texture = new Texture("assets/textures/iron.jpg", 0);
-	texture2 = new Texture("assets/textures/sh.jpg", 1);
-	texturelight = new Texture("assets/textures/ironlight.png", 2);
-	texturelight2 = new Texture("assets/textures/shlight.png", 3);
-	shape1 = Shape::createBox(0.2);
-	shape2 = Shape::createSphere(0.3);
-	shape3 = Shape::createPlan(0.1, 0.1);
-	transforms = glm::mat4(1.0);
+	GL_CALL(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 	perpareCamera();
-
-	pre = glm::perspective(glm::radians(45.0f), (float)app->getWidth() / (float)app->getHeight(), 0.01f, 100.0f);
-	view = glm::translate(glm::mat4(1.0f), glm::vec3(0.3, 1.6, 12.0));
-	view = glm::inverse(view);
-	lightpos = {0.0, 0.1, 0.0};
-	//std::cout << glm::to_string(view).c_str() << std::endl;
-	//assert(false);
-	//Createshape(positi, lons, lats, 8.0f);
-	//prepareVAO();
-	//GL_CALL(preparebox());
+	prepare();
+	initIMGUI();
 
 	while (app->update()) {
 		cameraControl->update();
-		render2();
+
+		//lightmove();
+		renderer->render(meshes, camera, spotlight, dirlight, pointlights ,ambilight);
+		renderer->setClearColor(clearColor);
+		renderIMGUI();
+		//glEnable(GL_CULL_FACE);
+		glCullFace(GL_FRONT);
 		_sleep(8);
 		//system("cls");
 	}
 
 	app->destroy();
-	delete texture;
-	delete texture2;
-	delete texturelight;
-	delete texturelight2;
-	delete camera;
-	delete cameraControl;
-	delete shape1;
-	delete shape2;
-	delete shape3;
+
 	return 0;
 }

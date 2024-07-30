@@ -9,6 +9,7 @@ public:
 	void setFloat(const std::string& name, float value);
 	void setVector3(const std::string& name, float x, float y, float z);
 	void setVector3(const std::string& name, const float* values);
+	void setVector3(const std::string& name, const glm::vec3& vector);
 	void setInt(const std::string& name, int value);
 	void setMat4(const std::string& name, glm::mat4 mat);
 	void begin();

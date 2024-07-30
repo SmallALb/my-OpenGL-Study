@@ -73,10 +73,10 @@ build CMakeFiles\openglStudy.dir\glad.c.obj: C_COMPILER__openglStudy_unscanned_R
 #############################################
 # Link the executable openglStudy.exe
 
-build openglStudy.exe: CXX_EXECUTABLE_LINKER__openglStudy_RelWithDebInfo CMakeFiles\openglStudy.dir\main.cpp.obj CMakeFiles\openglStudy.dir\glad.c.obj | wrapper\wrapper.lib application\app.lib glframework\fw.lib || application\app.lib glframework\fw.lib wrapper\wrapper.lib
+build openglStudy.exe: CXX_EXECUTABLE_LINKER__openglStudy_RelWithDebInfo CMakeFiles\openglStudy.dir\main.cpp.obj CMakeFiles\openglStudy.dir\glad.c.obj | wrapper\wrapper.lib application\app.lib glframework\fw.lib wrapper\wrapper.lib application\app.lib glframework\fw.lib || application\app.lib glframework\fw.lib wrapper\wrapper.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  glfw3.lib  wrapper\wrapper.lib  application\app.lib  glframework\fw.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   LINK_PATH = -LIBPATH:E:\code\OpenGL\openglcode\SYSTEM   -LIBPATH:E:\code\OpenGL\openglcode\thirdParty\lib
   OBJECT_DIR = CMakeFiles\openglStudy.dir
   POST_BUILD = cd .
@@ -289,6 +289,86 @@ build application\rebuild_cache: phony application\CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_fw: phony || glframework\CMakeFiles\fw.dir
 
+build glframework\CMakeFiles\fw.dir\light\ambientLight.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\light\ambientLight.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\light
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\light\directionLight.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\light\directionLight.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\light
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\light\light.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\light\light.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\light
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\light\pointLight.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\light\pointLight.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\light
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\materials\material.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\materials\material.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\materials
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\materials\phongMaterial.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\materials\phongMaterial.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\materials
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\materials\whiteMaterial.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\materials\whiteMaterial.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\materials
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\mesh.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\mesh.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\object.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\object.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
+build glframework\CMakeFiles\fw.dir\renderer\render.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\renderer\render.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir\renderer
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
 build glframework\CMakeFiles\fw.dir\shader.cpp.obj: CXX_COMPILER__fw_unscanned_RelWithDebInfo E$:\code\OpenGL\openglcode\glframework\shader.cpp || cmake_object_order_depends_target_fw
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++latest
   INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
@@ -321,7 +401,7 @@ build glframework\CMakeFiles\fw.dir\texture.cpp.obj: CXX_COMPILER__fw_unscanned_
 #############################################
 # Link the static library glframework\fw.lib
 
-build glframework\fw.lib: CXX_STATIC_LIBRARY_LINKER__fw_RelWithDebInfo glframework\CMakeFiles\fw.dir\shader.cpp.obj glframework\CMakeFiles\fw.dir\shape.cpp.obj glframework\CMakeFiles\fw.dir\texture.cpp.obj
+build glframework\fw.lib: CXX_STATIC_LIBRARY_LINKER__fw_RelWithDebInfo glframework\CMakeFiles\fw.dir\light\ambientLight.cpp.obj glframework\CMakeFiles\fw.dir\light\directionLight.cpp.obj glframework\CMakeFiles\fw.dir\light\light.cpp.obj glframework\CMakeFiles\fw.dir\light\pointLight.cpp.obj glframework\CMakeFiles\fw.dir\materials\material.cpp.obj glframework\CMakeFiles\fw.dir\materials\phongMaterial.cpp.obj glframework\CMakeFiles\fw.dir\materials\whiteMaterial.cpp.obj glframework\CMakeFiles\fw.dir\mesh.cpp.obj glframework\CMakeFiles\fw.dir\object.cpp.obj glframework\CMakeFiles\fw.dir\renderer\render.cpp.obj glframework\CMakeFiles\fw.dir\shader.cpp.obj glframework\CMakeFiles\fw.dir\shape.cpp.obj glframework\CMakeFiles\fw.dir\texture.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = glframework\CMakeFiles\fw.dir
@@ -409,14 +489,14 @@ build wrapper\all: phony wrapper\wrapper.lib
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake E$:\code\OpenGL\openglcode\CMakeLists.txt E$:\code\OpenGL\openglcode\application\CMakeLists.txt E$:\code\OpenGL\openglcode\glframework\CMakeLists.txt E$:\code\OpenGL\openglcode\wrapper\CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.28.3-msvc11\CMakeCCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeCXXCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeRCCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeSystem.cmake E$:\code\OpenGL\openglcode\CMakeLists.txt E$:\code\OpenGL\openglcode\application\CMakeLists.txt E$:\code\OpenGL\openglcode\glframework\CMakeLists.txt E$:\code\OpenGL\openglcode\wrapper\CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.28.0-msvc1\CMakeCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeCXXCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeRCCompiler.cmake CMakeFiles\3.28.0-msvc1\CMakeSystem.cmake E$:\code\OpenGL\openglcode\CMakeLists.txt E$:\code\OpenGL\openglcode\application\CMakeLists.txt E$:\code\OpenGL\openglcode\glframework\CMakeLists.txt E$:\code\OpenGL\openglcode\wrapper\CMakeLists.txt: phony
+build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.28.3-msvc11\CMakeCCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeCXXCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeRCCompiler.cmake CMakeFiles\3.28.3-msvc11\CMakeSystem.cmake E$:\code\OpenGL\openglcode\CMakeLists.txt E$:\code\OpenGL\openglcode\application\CMakeLists.txt E$:\code\OpenGL\openglcode\glframework\CMakeLists.txt E$:\code\OpenGL\openglcode\wrapper\CMakeLists.txt: phony
 
 
 #############################################

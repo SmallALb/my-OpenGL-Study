@@ -37,6 +37,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("E:/code/OpenGL/openglcode/out/build/x64-Debug/wrapper/cmake_install.cmake")
   include("E:/code/OpenGL/openglcode/out/build/x64-Debug/application/cmake_install.cmake")
   include("E:/code/OpenGL/openglcode/out/build/x64-Debug/glframework/cmake_install.cmake")
+  include("E:/code/OpenGL/openglcode/out/build/x64-Debug/imgui/cmake_install.cmake")
 
 endif()
 
