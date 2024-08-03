@@ -289,6 +289,14 @@ build application\rebuild_cache: phony application\CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_fw: phony || glframework\CMakeFiles\fw.dir
 
+build glframework\CMakeFiles\fw.dir\Scene.cpp.obj: CXX_COMPILER__fw_unscanned_Debug E$:\code\OpenGL\openglcode\glframework\Scene.cpp || cmake_object_order_depends_target_fw
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++latest
+  INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
+  OBJECT_DIR = glframework\CMakeFiles\fw.dir
+  OBJECT_FILE_DIR = glframework\CMakeFiles\fw.dir
+  TARGET_COMPILE_PDB = glframework\CMakeFiles\fw.dir\fw.pdb
+  TARGET_PDB = glframework\fw.pdb
+
 build glframework\CMakeFiles\fw.dir\light\ambientLight.cpp.obj: CXX_COMPILER__fw_unscanned_Debug E$:\code\OpenGL\openglcode\glframework\light\ambientLight.cpp || cmake_object_order_depends_target_fw
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++latest
   INCLUDES = -external:IE:\code\OpenGL\openglcode\thirdParty\include -external:W0
@@ -409,7 +417,7 @@ build glframework\CMakeFiles\fw.dir\texture.cpp.obj: CXX_COMPILER__fw_unscanned_
 #############################################
 # Link the static library glframework\fw.lib
 
-build glframework\fw.lib: CXX_STATIC_LIBRARY_LINKER__fw_Debug glframework\CMakeFiles\fw.dir\light\ambientLight.cpp.obj glframework\CMakeFiles\fw.dir\light\directionLight.cpp.obj glframework\CMakeFiles\fw.dir\light\light.cpp.obj glframework\CMakeFiles\fw.dir\light\pointLight.cpp.obj glframework\CMakeFiles\fw.dir\light\spotLight.cpp.obj glframework\CMakeFiles\fw.dir\materials\material.cpp.obj glframework\CMakeFiles\fw.dir\materials\phongMaterial.cpp.obj glframework\CMakeFiles\fw.dir\materials\whiteMaterial.cpp.obj glframework\CMakeFiles\fw.dir\mesh.cpp.obj glframework\CMakeFiles\fw.dir\object.cpp.obj glframework\CMakeFiles\fw.dir\renderer\render.cpp.obj glframework\CMakeFiles\fw.dir\shader.cpp.obj glframework\CMakeFiles\fw.dir\shape.cpp.obj glframework\CMakeFiles\fw.dir\texture.cpp.obj
+build glframework\fw.lib: CXX_STATIC_LIBRARY_LINKER__fw_Debug glframework\CMakeFiles\fw.dir\Scene.cpp.obj glframework\CMakeFiles\fw.dir\light\ambientLight.cpp.obj glframework\CMakeFiles\fw.dir\light\directionLight.cpp.obj glframework\CMakeFiles\fw.dir\light\light.cpp.obj glframework\CMakeFiles\fw.dir\light\pointLight.cpp.obj glframework\CMakeFiles\fw.dir\light\spotLight.cpp.obj glframework\CMakeFiles\fw.dir\materials\material.cpp.obj glframework\CMakeFiles\fw.dir\materials\phongMaterial.cpp.obj glframework\CMakeFiles\fw.dir\materials\whiteMaterial.cpp.obj glframework\CMakeFiles\fw.dir\mesh.cpp.obj glframework\CMakeFiles\fw.dir\object.cpp.obj glframework\CMakeFiles\fw.dir\renderer\render.cpp.obj glframework\CMakeFiles\fw.dir\shader.cpp.obj glframework\CMakeFiles\fw.dir\shape.cpp.obj glframework\CMakeFiles\fw.dir\texture.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = glframework\CMakeFiles\fw.dir

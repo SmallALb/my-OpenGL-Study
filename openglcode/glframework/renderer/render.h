@@ -9,6 +9,8 @@
 #include "../shader.h"
 #include "../materials/phongMaterial.h"
 #include "../light/spotLight.h"
+#include "../Scene.h"
+
 
 class Renderer {
 public:
@@ -21,6 +23,21 @@ public:
 		SpotLight* spotLight,
 		DirectionalLight* dirLight,
 		const std::vector<PointLight*>& pointlights,
+		AmbientLight* ambLight
+	);
+
+	void render(
+		Scence* scence,
+		Camera* camaer,
+		DirectionalLight* dirLight,
+		AmbientLight* ambLight
+	);
+
+
+	void renderObject(
+		Object* scence,
+		Camera* camaer,
+		DirectionalLight* dirLight,
 		AmbientLight* ambLight
 	);
 

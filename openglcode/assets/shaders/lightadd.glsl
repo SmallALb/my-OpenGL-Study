@@ -30,6 +30,7 @@ struct PointLight {
 	float k2;
 	float k1;
 	float kc;
+	int flag;
 };
 
 struct SpotLight {
@@ -41,9 +42,11 @@ struct SpotLight {
 	float specularIntensity;
 };
 
+#define PlightSum 6
+
 uniform SpotLight spotlight;
 uniform DirectionLight directionalLight;
-uniform PointLight pointLights[4];
+uniform PointLight pointLights[PlightSum];
 
 
 //计算漫反射
@@ -94,6 +97,7 @@ vec3 calculateDirectionLight(vec3 normal, DirectionLight light, vec3 viewDir) {
 
 //点光源
 vec3 calculatePointLight(vec3 normal, PointLight light, vec3 viewDir) {
+	if (light.flag != 1) return vec3(0.0, 0.0, 0.0);
 	vec3 objectColor = texture(sampler, uv).xyz;
 	vec3 Direction = normalize(worldPosition - light.position);
 
@@ -120,7 +124,7 @@ void main() {
 
 	result += calculateSpotLight(normalN, spotlight, viewDir);
 	result += calculateDirectionLight(normalN, directionalLight, viewDir);
-	for (int i = 0; i<4; i++) {result += calculatePointLight(normalN, pointLights[i], viewDir);}
+	for (int i = 0; i<PlightSum; i++) {result += calculatePointLight(normalN, pointLights[i], viewDir);}
 	result += objectColor * ambientcolor;
 
 	//vec3 finalColor =  (diffcuseColor + specularcolor ) * soptintensity + ambient;

@@ -24,6 +24,8 @@ GameCameraControl* cameraControl = nullptr;
 Mesh* meshwhite = nullptr;
 glm::mat4 model, view, pre, model2, transforms;
 
+Scence* scence = nullptr;
+
 glm::vec3 clearColor{};
 
 std::vector<Mesh*> meshes{};
@@ -105,11 +107,11 @@ void render() {
 
 void prepare() {
 	renderer = new Renderer();
+	scence = new Scence();
 	auto shape = Shape::createSphere(3.0f);
 	auto shape2 = Shape::createBox(1.0f);
 	auto shape3 = Shape::createSphere(0.2);
-
-
+	
 	auto material2 = new PhongMaterial();
 	auto whitematerial = new WhiteMaterial();
 
@@ -120,11 +122,17 @@ void prepare() {
 	meshwhite = new Mesh(shape3, whitematerial);
 	meshwhite->setPosition({ 1.0, 0.0, 0.0 });
 	auto mesh2 = new Mesh(shape2, material2);
+	auto spMesh = new Mesh(shape3, material2);
+	spMesh->setPosition({ 2.0, 0.0, 0.0 });
 
-	mesh2->setPosition({ -6.0, 0.0, -5.0 });
+	mesh2->setPosition({ 3.0, 0.0, 0.0 });
 	meshes.push_back(meshwhite);
 	meshes.push_back(mesh2);
+	meshes.push_back(spMesh);
 
+	scence->addChild(mesh2);
+
+	mesh2->addChild(spMesh);
 
 	spotlight = new SpotLight();
 	spotlight->setPosition(meshwhite->getPosition());
@@ -133,52 +141,12 @@ void prepare() {
 	spotlight->mOuterAngle = 45.0f;
 	spotlight->mSpecularIntensity = 1.0;
 
-	PointLight* pointlight1 = nullptr;
-	pointlight1 = new PointLight();
-	pointlight1->setPosition({1.0, 0.0, 0.0});
-	pointlight1->mColor = {1.0, 0.0, 0.0};
-	pointlight1->mSpecularIntensity = 0.5;
-	pointlight1->mk2 = 0.017;
-	pointlight1->mk1 = 0.07;
-	pointlight1->mkc = 1.0;
-	pointlights.push_back(pointlight1);
-
-	PointLight* pointlight2 = nullptr;
-	pointlight2 = new PointLight();
-	pointlight2->setPosition({ 0.0, -1.0, 0.0 });
-	pointlight2->mColor = { 0.0, 1.0, 0.0 };
-	pointlight2->mSpecularIntensity = 0.5;
-	pointlight2->mk2 = 0.017;
-	pointlight2->mk1 = 0.07;
-	pointlight2->mkc = 1.0;
-	pointlights.push_back(pointlight2);
-
-	PointLight* pointlight3 = nullptr;
-	pointlight3 = new PointLight();
-	pointlight3->setPosition({ 0.0, 0.0, 1.5 });
-	pointlight3->mColor = { 0.0, 0.0, 1.0 };
-	pointlight3->mSpecularIntensity = 0.5;
-	pointlight3->mk2 = 0.017;
-	pointlight3->mk1 = 0.07;
-	pointlight3->mkc = 1.0;
-	pointlights.push_back(pointlight3);
-
-	PointLight* pointlight4 = nullptr;
-	pointlight4 = new PointLight();
-	pointlight4->setPosition({ 0.0, 0.0, -1.5 });
-	pointlight4->mSpecularIntensity = 0.5;
-	pointlight4->mk2 = 0.017;
-	pointlight4->mk1 = 0.07;
-	pointlight4->mkc = 1.0;
-	pointlights.push_back(pointlight4);
-
-
 	ambilight = new AmbientLight();
 	ambilight->mColor = glm::vec3(0.6f);
 	ambilight->mSpecularIntensity = 0.5;
 
 	dirlight = new DirectionalLight();
-	dirlight->mDir = {1, 1, 1};
+	dirlight->mDir = glm::vec3(-1.0f);
 	
 }
 
@@ -189,7 +157,7 @@ void lightmove() {
 }
 
 int main() {
-	if (!app->init(1000, 1000)) {
+	if (!app->init(1400, 1600)) {
 		return -1;
 	}
 
@@ -207,9 +175,8 @@ int main() {
 
 	while (app->update()) {
 		cameraControl->update();
-
 		//lightmove();
-		renderer->render(meshes, camera, spotlight, dirlight, pointlights ,ambilight);
+		renderer->render(scence, camera, dirlight,ambilight);
 		renderer->setClearColor(clearColor);
 		renderIMGUI();
 		//glEnable(GL_CULL_FACE);
